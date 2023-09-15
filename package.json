@@ -16,7 +16,7 @@
   "files": [
     "dist",
     "schema.graphql",
-    "project.yaml"
+    "polkadot.yaml"
   ],
   "author": "subscan",
   "license": "MIT",

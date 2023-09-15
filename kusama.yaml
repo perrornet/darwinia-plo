@@ -16,33 +16,26 @@ schema:
   file: ./schema.graphql
 network:
   # The genesis hash of the network (hash of block 0)
-  chainId: "0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3"
+  chainId: "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe"
   # This endpoint must be a public non-pruned archive node
   # Public nodes may be rate limited, which can affect indexing speed
   # When developing your project we suggest getting a private API key
-  # You can get them from OnFinality and other RPC providers that serve Polkadot
+  # You can get them from OnFinality for free https://app.onfinality.io
+  # https://documentation.onfinality.io/support/the-enhanced-api-service
   endpoint:
-    - wss://polkadot.api.onfinality.io/public-ws
-    - wss://rpc.polkadot.io
+    - wss://kusama.api.onfinality.io/public-ws
+    - wss://kusama-rpc.polkadot.io
   # Optionally provide the HTTP endpoint of a full chain dictionary to speed up processing
-  dictionary: "https://api.subquery.network/sq/subquery/polkadot-dictionary"
+  dictionary: "https://api.subquery.network/sq/subquery/kusama-dictionary"
 dataSources:
   - kind: substrate/Runtime
-    startBlock: 1
+    startBlock: 17792600
     mapping:
       file: ./dist/index.js
       handlers:
-        # - handler: handleBlock
-        #   kind: substrate/BlockHandler
-        # - handler: handleCall
-        #   kind: substrate/CallHandler
-        #   filter:
-        #     method:
-        #       module: balances
-        #       method: Deposit
-        #       success: true
-        - handler: handleEvent
-          kind: substrate/EventHandler
+        - handler: handleCall
+          kind: substrate/CallHandler
           filter:
-            module: balances
-            method: Transfer
+            module: system
+            method: remark
+            success: true

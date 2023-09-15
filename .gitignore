@@ -25,7 +25,6 @@ package-lock.json
 
 # Maven
 target/
-dist/
 src/types
 
 # JetBrains IDE
@@ -52,4 +51,8 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
-
+dist
+.kusama-cid
+.polkadot-cid
+.project-cid
+.idea
